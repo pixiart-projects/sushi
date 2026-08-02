@@ -181,24 +181,6 @@ h4 {
   align-items: center;
   gap: var(--spacing-m);
 }
-.header__theme-toggle {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.4rem;
-  cursor: pointer;
-  margin-right: 1rem;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-.header__theme-toggle:hover i {
-  transform: rotate(20deg);
-  transition: transform 0.4s ease;
-  color: rgb(255, 174, 0);
-}
-.header__theme-toggle:active i {
-  transform: rotate(0deg) scale(0.9);
-  transition: transform 0.2s ease;
-}
 .header__lang-selector-option {
   font-size: 0.85rem;
   padding: 0 4px;
@@ -1442,9 +1424,6 @@ html .animated {
   .header__controls {
     gap: 0.75rem;
   }
-  .header__theme-toggle {
-    margin-right: 0.25rem;
-  }
   .header__lang-selector {
     padding: 3px 6px;
   }
@@ -1568,10 +1547,6 @@ html .animated {
   }
   .header__controls {
     gap: 0.5rem;
-  }
-  .header__theme-toggle {
-    font-size: 1.1rem;
-    margin-right: 0.1rem;
   }
   .header__lang-selector {
     padding: 2px 4px;

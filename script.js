@@ -563,26 +563,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', checkMenuStickyState);
   }
 
-  if (!isCartPage) {
-    const animateSectionOnView = (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    };
-
-    const sceneObserver = new IntersectionObserver(animateSectionOnView, {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1,
-    });
-    const elementsToAnimate = document.querySelectorAll(
-      '.sushi-scene, .hero__text, .about, .menu__card'
-    );
-    elementsToAnimate.forEach((el) => sceneObserver.observe(el));
-  }
   const hamburger = document.querySelector('.header__hamburger');
   const nav = document.querySelector('.header__nav'); // <- klasa na <nav>, nie na <ul>
 
@@ -672,59 +652,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCartPage();
     renderAddons();
   }
-
-  const addonCards = document.querySelectorAll('#cart-addons .menu__card');
-  addonCards.forEach((card) => card.classList.add('in-view'));
-
-  const themeToggle = document.getElementById('theme-toggle');
-  const body = document.body;
-
-  if (localStorage.getItem('theme') === 'light') {
-    body.classList.add('light-mode');
-    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-  }
-
-  themeToggle.addEventListener('click', () => {
-    body.classList.toggle('light-mode');
-
-    if (body.classList.contains('light-mode')) {
-      themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-      localStorage.setItem('theme', 'light');
-    } else {
-      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-      localStorage.setItem('theme', 'dark');
-    }
-  });
-  const revealElements = document.querySelectorAll(
-    '.service__card, .service__item, .menu__card, .quality-card, .testimonial__card, .section--photo'
-  );
-
-  function revealOnScroll() {
-    const windowHeight = window.innerHeight;
-
-    revealElements.forEach((el, index) => {
-      const elementTop = el.getBoundingClientRect().top;
-      const revealPoint = 100;
-
-      if (elementTop < windowHeight - revealPoint) {
-        if (!el.classList.contains('animated')) {
-          if (el.closest('#locations')) {
-            el.style.transitionDelay = `${index * 0.02}s`;
-          } else if (el.closest('#services')) {
-            el.style.transitionDelay = `${index * 0.0}s`;
-          } else {
-            el.style.transitionDelay = `${index * 0.1}s`;
-          }
-          el.classList.add('animated');
-        }
-      }
-    });
-  }
-
-  window.addEventListener('load', revealOnScroll);
-
-  window.addEventListener('scroll', revealOnScroll);
-  window.addEventListener('resize', revealOnScroll);
 
   window.renderCartPage = renderCartPage;
   window.renderAddons = renderAddons;
